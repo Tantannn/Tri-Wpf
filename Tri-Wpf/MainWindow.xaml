@@ -5,8 +5,80 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tri_Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="下部工のユニット登録" Height="500" Width="975">
 
+    <Grid Background="#F0F0F0">
+        <!-- Define two main columns -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />   <!-- Left Part (Tabs and Text) -->
+            <ColumnDefinition Width="1*" />   <!-- Right Part (Legend Frame) -->
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Part -->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />   <!-- Top Text Line -->
+                <RowDefinition Height="*" />    <!-- TabControl -->
+                <RowDefinition Height="40" />   <!-- Bottom Text Line -->
+            </Grid.RowDefinitions>
+
+            <!-- Top Row with Two TextBlocks Spread Out -->
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Left TextBlock -->
+                <TextBlock Text="工種：1柱式‐A" FontSize="12" Grid.Column="0" />
+                <!-- Right Section with a Grid for better control -->
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Right-aligned TextBlock -->
+                    <TextBlock Text="ユニット名: " FontSize="12" Grid.Column="0" HorizontalAlignment="Right"
+                               Margin="0,0,10,0" />
+
+                    <!-- StackPanel with TextBox and Button -->
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <TextBox Name="MyTextBox" Width="175" />
+                        <Button Content="イメージ" Width="80" Click="Button_Click" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <!-- Bottom Row Grouped and Aligned Right -->
+
+            <!-- Tab Control -->
+            <TabControl Grid.Row="1" Margin="10">
+                <TabItem Header="杭" Width="45px">
+                    <StackPanel Margin="10">
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="受桁" Width="60px">
+                    <TextBlock Text="This is Tab 2 content" />
+                </TabItem>
+                <TabItem Header="ブレス/継ぎ材" Width="95px">
+                    <TextBlock Text="This is Tab 3 content" />
+                </TabItem>
+                <TabItem Header="敷桁" Width="60px">
+                    <TextBlock Text="This is Tab 4 content" />
+                </TabItem>
+            </TabControl>
+
+            <!-- <Button Grid.Row="2" Content="イメージ" Width="80" Click="Button_Click" /> -->
+        </Grid>
+
+        <!-- Right Part (Legend Frame) -->
+        <GroupBox Grid.Column="1" Header="イメージ" Margin="0,10,0,0"
+                  HorizontalAlignment="Stretch">
+            <Grid Background="White" Margin="9">
+                <!-- Content inside the Frame -->
+                <TextBlock Text="Frame Content Here" Margin="10" />
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>
