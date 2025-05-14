@@ -5,80 +5,152 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tri_Wpf"
         mc:Ignorable="d"
-        Title="下部工のユニット登録" Height="500" Width="975">
+        Title="下部工のユニット登録" Height="381" Width="975">
 
     <Grid Background="#F0F0F0">
-        <!-- Define two main columns -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />   <!-- Left Part (Tabs and Text) -->
-            <ColumnDefinition Width="1*" />   <!-- Right Part (Legend Frame) -->
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Left Part -->
-        <Grid Grid.Column="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Left Column - Main Content -->
+        <Grid Grid.Column="0" Margin="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40" />   <!-- Top Text Line -->
-                <RowDefinition Height="*" />    <!-- TabControl -->
-                <RowDefinition Height="40" />   <!-- Bottom Text Line -->
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <!-- Top Row with Two TextBlocks Spread Out -->
-            <Grid Margin="10">
+            <!-- Header Section -->
+            <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <!-- Left TextBlock -->
-                <TextBlock Text="工種：1柱式‐A" FontSize="12" Grid.Column="0" />
-                <!-- Right Section with a Grid for better control -->
-                <Grid Grid.Column="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                <TextBlock Text="工程：1柱式-A" FontSize="12" VerticalAlignment="Center" />
 
-                    <!-- Right-aligned TextBlock -->
-                    <TextBlock Text="ユニット名: " FontSize="12" Grid.Column="0" HorizontalAlignment="Right"
-                               Margin="0,0,10,0" />
-
-                    <!-- StackPanel with TextBox and Button -->
-                    <StackPanel Grid.Column="1" Orientation="Horizontal">
-                        <TextBox Name="MyTextBox" Width="175" />
-                        <Button Content="イメージ" Width="80" Click="Button_Click" Margin="10 0 0 0"/>
-                    </StackPanel>
-                </Grid>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="ユニット名 : " FontSize="12" VerticalAlignment="Center" Margin="0,0,5,0" />
+                    <TextBox Width="175" Margin="0,0,10,0" />
+                    <Button Content="イメージ" Width="80" />
+                </StackPanel>
             </Grid>
 
-            <!-- Bottom Row Grouped and Aligned Right -->
-
             <!-- Tab Control -->
-            <TabControl Grid.Row="1" Margin="10">
-                <TabItem Header="杭" Width="45px">
-                    <StackPanel Margin="10">
-                    </StackPanel>
+            <TabControl Grid.Row="1" Margin="0,10,0,0">
+                <TabItem Header="杭" Width="45">
+                    <Grid Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Pile Size -->
+                        <TextBlock Text="杭サイズ：" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
+                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="5">
+                            <!-- <TextBlock Text="H300×300×10×15" Margin="5"/> -->
+                            <ComboBox Width="130">
+                                <ComboBoxItem IsSelected="True">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock>H300×300×10×15</TextBlock>
+                                    </StackPanel>
+                                </ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <TextBlock Text="SL (mm)：" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="5">
+                            <TextBox Width="130" Margin="0,0,10,0" Height="22" />
+                        </StackPanel>
+
+                        <TextBlock Text="SF (mm)：" Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
+                        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5">
+                            <TextBox Width="130" Margin="0,0,10,0" Height="22" />
+                        </StackPanel>
+
+                        <!-- Pile Count -->
+                        <TextBlock Text="杭本数：" Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
+                        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="5">
+                            <TextBox Width="130" Margin="0,0,10,0" Height="22" />
+                            <Button Content="編集" Margin="5 0 0 0" Width="60" Height="22" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="3" Grid.Column="2" VerticalAlignment="Center">
+                            <!-- Spacing -->
+                            <TextBlock Text="間隔 (mm)：2000" Grid.Row="5" Grid.Column="0" Margin="5"
+                                       HorizontalAlignment="Right" />
+                        </StackPanel>
+
+                        <!-- Pile Direction -->
+                        <TextBlock Text="杭の向き：" Grid.Row="4" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
+                        <StackPanel Grid.Row="4" Grid.Column="1" Margin="5" HorizontalAlignment="Left">
+                            <ComboBox Width="130" Height="22">
+                                <ComboBoxItem IsSelected="True">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock>0°</TextBlock>
+                                    </StackPanel>
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock>90°</TextBlock>
+                                    </StackPanel>
+                                </ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+
+                    </Grid>
                 </TabItem>
-                <TabItem Header="受桁" Width="60px">
-                    <TextBlock Text="This is Tab 2 content" />
+                <TabItem Header="受桁" Width="60">
+                    <TextBlock Text="受桁内容" Margin="10" />
                 </TabItem>
-                <TabItem Header="ブレス/継ぎ材" Width="95px">
-                    <TextBlock Text="This is Tab 3 content" />
+                <TabItem Header="ブレス/継ぎ材" Width="95">
+                    <TextBlock Text="ブレス/継ぎ材内容" Margin="10" />
                 </TabItem>
-                <TabItem Header="敷桁" Width="60px">
-                    <TextBlock Text="This is Tab 4 content" />
+                <TabItem Header="敷桁" Width="60">
+                    <TextBlock Text="敷桁内容" Margin="10" />
                 </TabItem>
             </TabControl>
 
-            <!-- <Button Grid.Row="2" Content="イメージ" Width="80" Click="Button_Click" /> -->
         </Grid>
 
-        <!-- Right Part (Legend Frame) -->
-        <GroupBox Grid.Column="1" Header="イメージ" Margin="0,10,0,0"
-                  HorizontalAlignment="Stretch">
+        <!-- Right Column - Image Section -->
+        <GroupBox Grid.Column="1" Header="イメージ" Margin="10">
             <Grid Background="White" Margin="9">
-                <!-- Content inside the Frame -->
-                <TextBlock Text="Frame Content Here" Margin="10" />
+                <Image Source="D:\code\Tri-Wpf\Image\image.png" Stretch="Uniform" />
             </Grid>
         </GroupBox>
+
+        <!-- Bottom Buttons -->
+        <StackPanel Grid.Row="1" Grid.Column="0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Margin="10,10,10,10">
+            <Button Content="計算書取込" Width="100" Margin="0,0,10,0" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="0,10,10,10">
+            <Button Content="適用" Width="80" Margin="0,0,10,0" />
+            <Button Content="OK" Width="80" Margin="0,0,10,0" />
+            <Button Content="閉じる" Width="80" />
+        </StackPanel>
     </Grid>
 </Window>
