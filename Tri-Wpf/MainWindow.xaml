@@ -5,7 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tri_Wpf"
         mc:Ignorable="d"
-        Title="下部工のユニット登録" Height="381" Width="975">
+        Title="下部工のユニット登録" Height="381" Width="975"
+        FontSize="12">
+    <Window.Resources>
+        <Style TargetType="GroupBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GroupBox">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0"
+                                    BorderThickness="1" BorderBrush="White"
+                                    CornerRadius="0,0,0,0">
+                                <ContentPresenter
+                                    ContentSource="Header"
+                                    RecognizesAccessKey="True" />
+                            </Border>
+                            <Border Grid.Row="1" BorderBrush="White"
+                                    BorderThickness="1"
+                                    CornerRadius="0,0,0,0">
+                                <ContentPresenter Margin="4" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
 
     <Grid Background="#F0F0F0">
         <Grid.ColumnDefinitions>
@@ -44,7 +73,7 @@
 
             <!-- Tab Control -->
             <TabControl Grid.Row="1" Margin="0,10,0,0">
-                <TabItem Header="杭" Width="45">
+                <TabItem Header="杭" Width="45" Margin="-4 0 0 0">
                     <Grid Margin="5">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -114,25 +143,26 @@
 
                     </Grid>
                 </TabItem>
-                <TabItem Header="受桁" Width="60">
+                <TabItem Header="受桁" Width="60" Margin="-4 0 0 0">
                     <TextBlock Text="受桁内容" Margin="10" />
                 </TabItem>
-                <TabItem Header="ブレス/継ぎ材" Width="95">
+                <TabItem Header="ブレス/継ぎ材" Width="95" Margin="-4 0 0 0">
                     <TextBlock Text="ブレス/継ぎ材内容" Margin="10" />
                 </TabItem>
-                <TabItem Header="敷桁" Width="60">
+                <TabItem Header="敷桁" Width="60" Margin="-4 0 0 0">
                     <TextBlock Text="敷桁内容" Margin="10" />
                 </TabItem>
             </TabControl>
 
         </Grid>
 
-        <!-- Right Column - Image Section -->
-        <GroupBox Grid.Column="1" Header="イメージ" Margin="10">
-            <Grid Background="White" Margin="9">
-                <Image Source="D:\code\Tri-Wpf\Image\image.png" Stretch="Uniform" />
+        <GroupBox Grid.Row="0" Grid.Column="1" Header="イメージ" Margin="10"
+                  Style="{StaticResource SharpGroupBoxStyle}">
+            <Grid Background="White" Margin="4">
+                <!-- Your image content here -->
             </Grid>
         </GroupBox>
+
 
         <!-- Bottom Buttons -->
         <StackPanel Grid.Row="1" Grid.Column="0"

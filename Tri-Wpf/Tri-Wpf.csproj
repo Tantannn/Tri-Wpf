@@ -9,4 +9,10 @@
         <UseWPF>true</UseWPF>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Update="Window.Resources.cs">
+        <DependentUpon>Window.Resources.xaml</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
 </Project>
