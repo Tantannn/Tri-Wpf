@@ -156,8 +156,36 @@
 
         </Grid>
 
-        <GroupBox Grid.Row="0" Grid.Column="1" Header="イメージ" Margin="10"
-                  Style="{StaticResource SharpGroupBoxStyle}">
+        <GroupBox Grid.Row="0" Grid.Column="1" Header="イメージ" Margin="10">
+            <GroupBox.Template>
+                <ControlTemplate TargetType="GroupBox">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0"
+                                BorderThickness="1,1,1,1"
+                                BorderBrush="Gray"
+                                CornerRadius="0"
+                                Padding="0,5,0,0">
+                        </Border>
+                        <Border Grid.Row="1">
+                            <ContentPresenter ContentSource="Header"
+                                              RecognizesAccessKey="True"
+                                              Margin="4,0,0,0" />
+                        </Border>
+                        <Border Grid.Row="2"
+                                BorderThickness="1,0,1,1"
+                                BorderBrush="Gray"
+                                CornerRadius="0"
+                                Padding="0,5,0,0">
+                            <ContentPresenter Margin="{TemplateBinding Padding}" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </GroupBox.Template>
             <Grid Background="White" Margin="4">
                 <!-- Your image content here -->
             </Grid>
