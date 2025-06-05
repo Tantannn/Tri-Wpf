@@ -21,8 +21,17 @@ public partial class MainWindow : Window
         InitializeComponent();
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e)
+    private void EditButton_Click(object sender, RoutedEventArgs e)
     {
-        
+        if (int.TryParse(PileCountTextBox.Text, out int count) && count > 0)
+        {
+            var editWindow = new SpacingEdit(count);
+            editWindow.Owner = this;
+            editWindow.ShowDialog();
+        }
+        else
+        {
+            MessageBox.Show("正しい数値を入力してください。", "入力エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
     }
 }

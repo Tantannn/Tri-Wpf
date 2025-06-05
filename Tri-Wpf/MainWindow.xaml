@@ -90,8 +90,8 @@
                         <!-- Pile Count -->
                         <TextBlock Text="杭本数：" Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
                         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="5">
-                            <TextBox Width="130" Margin="0,0,10,0" Height="22" />
-                            <Button Content="編集" Margin="5 0 0 0" Width="60" Height="22" />
+                            <TextBox x:Name="PileCountTextBox" Width="130" Margin="0,0,10,0" Height="22" />
+                            <Button Content="編集" Click="EditButton_Click" Margin="5 0 0 0" Width="60" Height="22" />
                         </StackPanel>
                         <StackPanel Grid.Row="3" Grid.Column="2" VerticalAlignment="Center">
                             <!-- Spacing -->
@@ -130,9 +130,10 @@
             </TabControl>
         </Grid>
 
-        <GroupBox Grid.Row="0" Grid.Column="1"  Header="イメージ" Style="{StaticResource AlternateGroupBoxStyle}" Margin="0 9 9 -11">
+        <GroupBox Grid.Row="0" Grid.Column="1" Header="イメージ" Style="{StaticResource AlternateGroupBoxStyle}"
+                  Margin="0 9 9 -11">
             <Grid Background="White" Margin="9">
-                 <Image Source="D:\code\Tri-Wpf\Image\image.png" Stretch="Uniform" />
+                <Image Source="D:\code\Tri-Wpf\Image\image.png" Stretch="Uniform" />
             </Grid>
         </GroupBox>
 
