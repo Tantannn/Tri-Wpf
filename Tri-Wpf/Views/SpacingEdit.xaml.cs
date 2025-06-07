@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
+using Tri_Wpf.Models;
 
-namespace Tri_Wpf
+namespace Tri_Wpf.Views
 {
     public partial class SpacingEdit : Window
     {
@@ -32,11 +31,5 @@ namespace Tri_Wpf
         {
             this.Close();
         }
-    }
-
-    public class SpacingItem
-    {
-        public string Cmd { get; set; }
-        public string Value { get; set; }
     }
 }
