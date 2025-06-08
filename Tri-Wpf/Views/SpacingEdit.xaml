@@ -5,39 +5,39 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Tri_Wpf"
         mc:Ignorable="d"
-        Title="杭の間隔編集" Height="450" Width="800">
-    <Grid Margin="10">
+        Title="杭の間隔編集"
+        Height="220"
+        Width="300">
+    <Grid Margin="9">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-
         <DataGrid x:Name="SpacingGrid"
                   AutoGenerateColumns="False"
                   HeadersVisibility="Column"
                   CanUserAddRows="False"
-                  CanUserDeleteRows="False"
-                  Margin="10">
+                  CanUserDeleteRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Cmd" Binding="{Binding Cmd}" IsReadOnly="True" Width="*" />
                 <DataGridTextColumn Header="間隔 (mm)" Binding="{Binding Value}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
 
-        <!-- Total row -->
-        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
-            <TextBlock Text="合計 (mm)：" Margin="0,0,10,0" />
-            <TextBlock x:Name="TotalText" Text="6000" />
-        </StackPanel>
-
         <!-- Buttons -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="4">
-            <Button Content="適用" Margin="0,0,10,0" Width="80" Click="ApplyButton_Click" />
-            <Button Content="閉じる" Width="80" Click="CloseButton_Click" />
-        </StackPanel>
+        <DockPanel Grid.Row="1" Margin="0 9 0 0" LastChildFill="False">
+            <!-- Left-aligned content -->
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                <TextBlock Text="合計 (mm)：" Margin="0,0,10,0" />
+                <TextBlock x:Name="TotalText" Text="6000" />
+            </StackPanel>
+
+            <!-- Right-aligned buttons -->
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                <Button Content="適用" Margin="0,0,10,0" Width="48" Click="ApplyButton_Click" />
+                <Button Content="閉じる" Width="48" Click="CloseButton_Click" />
+            </StackPanel>
+        </DockPanel>
     </Grid>
 
 </Window>

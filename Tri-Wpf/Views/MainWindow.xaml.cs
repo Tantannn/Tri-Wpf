@@ -14,10 +14,12 @@ public partial class MainWindow
 
     private void EditButton_Click(object sender, RoutedEventArgs e)
     {
-        if (int.TryParse(PileCountTextBox.Text, out int count) && count > 0)
+        if (int.TryParse(PileCountTextBox.Text, out var count) && count > 0)
         {
-            var editWindow = new SpacingEdit(count);
-            editWindow.Owner = this;
+            var editWindow = new SpacingEdit(count)
+            {
+                Owner = this
+            };
             editWindow.ShowDialog();
         }
         else
