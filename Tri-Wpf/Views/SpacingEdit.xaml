@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Tri_Wpf"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
         Title="杭の間隔編集"
         Height="220"
@@ -19,10 +20,49 @@
                   CanUserAddRows="False"
                   CanUserDeleteRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Cmd" Binding="{Binding Cmd}" IsReadOnly="True" Width="*" />
-                <DataGridTextColumn Header="間隔 (mm)" Binding="{Binding Value}" Width="*" />
+                <DataGridTextColumn Header="Cmd" Binding="{Binding Cmd}" IsReadOnly="True" Width="*">
+                    <!-- Center align vertically for Cmd column -->
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="間隔 (mm)" Width="*">
+                    <!-- Set default value in the binding -->
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="Value" TargetNullValue="2000" FallbackValue="2000">
+                            <Binding.StringFormat>
+                                <system:String>0</system:String>
+                            </Binding.StringFormat>
+                        </Binding>
+                    </DataGridTextColumn.Binding>
+
+                    <!-- Style for normal display (TextBlock) -->
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Right" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="Margin" Value="0,0,5,0" />
+                            <Setter Property="Padding" Value="0" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+
+                    <!-- Style for edit mode (TextBox) -->
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="TextAlignment" Value="Right" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="HorizontalContentAlignment" Value="Right" />
+                            <Setter Property="Padding" Value="0" />
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+
 
         <!-- Buttons -->
         <DockPanel Grid.Row="1" Margin="0 9 0 0" LastChildFill="False">

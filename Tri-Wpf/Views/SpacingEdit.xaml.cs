@@ -1,23 +1,50 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows;
 using Tri_Wpf.Models;
 
 namespace Tri_Wpf.Views
 {
     public partial class SpacingEdit : Window
     {
+        private readonly ObservableCollection<SpacingItem> _items;
+
+
+        private void OnItemPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(SpacingItem.Value))
+            {
+                UpdateTotal();
+            }
+        }
+
+        private void UpdateTotal()
+        {
+            var total = _items?.Sum(x => x?.Value ?? 0) ?? 0;
+            TotalText.Text = $"合計: {total} mm";
+        }
+
+
         public SpacingEdit(int count)
         {
             InitializeComponent();
+            _items = [];
 
-            var items = new List<SpacingItem>();
-
-            for (var i = 1; i < count; i++) // correct: from s1-s2 up to s(n-1)-sn
+            // Generate items from S1-S2 up to S(n-1)-Sn
+            for (var i = 1; i < count; i++)
             {
-                var pair = $"s{i}-s{i + 1}";
-                items.Add(new SpacingItem { Cmd = pair, Value = "" });
+                var pair = $"S{i}-S{i + 1}";
+                var item = new SpacingItem
+                {
+                    Cmd = pair.ToUpper(),
+                    Value = 2000
+                };
+                item.PropertyChanged += OnItemPropertyChanged;
+                _items.Add(item);
             }
 
-            SpacingGrid.ItemsSource = items; // assumes you have a DataGrid named SpacingGrid in your XAML
+            SpacingGrid.ItemsSource = _items;
+            UpdateTotal();
         }
 
         private void ApplyButton_Click(object sender, RoutedEventArgs e)
