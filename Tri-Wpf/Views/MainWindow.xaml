@@ -94,7 +94,7 @@
                             <Button Content="編集" Click="EditButton_Click" Margin="5 0 0 0" Width="60" Height="22" />
                         </StackPanel>
                         <StackPanel Grid.Row="3" Grid.Column="2" VerticalAlignment="Center">
-                            <TextBlock Text="間隔 (mm)：2000" Grid.Row="5" Grid.Column="0" Margin="5"
+                            <TextBlock Text="間隔 (mm)：2000" x:Name="Interval" Grid.Row="5" Grid.Column="0" Margin="5"
                                        HorizontalAlignment="Right" />
                         </StackPanel>
 

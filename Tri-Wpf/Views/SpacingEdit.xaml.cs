@@ -9,6 +9,7 @@ namespace Tri_Wpf.Views
     {
         private readonly ObservableCollection<SpacingItem> _items;
 
+        public double TotalValue { get; private set; }
 
         private void OnItemPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
@@ -21,7 +22,14 @@ namespace Tri_Wpf.Views
         private void UpdateTotal()
         {
             var total = _items?.Sum(x => x?.Value ?? 0) ?? 0;
+            TotalValue = total;
             TotalText.Text = $"{total} mm";
+        }
+
+        private void ApplyButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+            this.Close();
         }
 
 
@@ -47,12 +55,12 @@ namespace Tri_Wpf.Views
             UpdateTotal();
         }
 
-        private void ApplyButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Handle apply logic (e.g., save data)
-            this.DialogResult = true;
-            this.Close();
-        }
+        // private void ApplyButton_Click(object sender, RoutedEventArgs e)
+        // {
+        //     // Handle apply logic (e.g., save data)
+        //     this.DialogResult = true;
+        //     this.Close();
+        // }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {

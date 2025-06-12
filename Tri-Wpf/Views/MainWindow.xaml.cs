@@ -16,10 +16,14 @@ public partial class MainWindow
     {
         if (int.TryParse(PileCountTextBox.Text, out var count) && count > 0)
         {
-            var editWindow = new SpacingEdit(count)
+            var editWindow = new SpacingEdit(count);
+            if (editWindow.ShowDialog() == true)
             {
-                Owner = this
-            };
+                // Access the total after dialog closes
+                var total = editWindow.TotalValue;
+                Interval.Text = $"間隔 (mm)：{total} mm";
+            }
+
             editWindow.ShowDialog();
         }
         else
