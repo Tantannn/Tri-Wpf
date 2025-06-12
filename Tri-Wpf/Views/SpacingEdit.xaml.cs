@@ -21,7 +21,7 @@ namespace Tri_Wpf.Views
         private void UpdateTotal()
         {
             var total = _items?.Sum(x => x?.Value ?? 0) ?? 0;
-            TotalText.Text = $"合計: {total} mm";
+            TotalText.Text = $"{total} mm";
         }
 
 
