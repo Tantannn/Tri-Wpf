@@ -21,7 +21,7 @@ public partial class MainWindow
             {
                 if (editWindow.DialogResult != true) return;
                 var total = editWindow.TotalValue;
-                Interval.Text = $"間隔 (mm)：{total} mm";
+                Interval.Text = $"間隔 (mm)：{total / (count - 1)}";
             };
             editWindow.ShowDialog();
         }
@@ -29,5 +29,15 @@ public partial class MainWindow
         {
             MessageBox.Show("正しい数値を入力してください。", "入力エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
+    }
+
+    private void OkButton_Click(object sender, RoutedEventArgs e)
+    {
+        this.Close();
+    }
+    
+    private void CloseButton_Click(object sender, RoutedEventArgs e)
+    {
+        this.Close();
     }
 }
