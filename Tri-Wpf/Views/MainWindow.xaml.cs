@@ -18,17 +18,7 @@ public partial class MainWindow
     {
         if (int.TryParse(PileCountTextBox.Text, out var count) && count > 0)
         {
-            var editWindow = new SpacingEdit(count);
-            editWindow.Closed += (s, args) =>
-            {
-                if (editWindow.DialogResult != true) return;
-                var vm = (SpacingVm)editWindow.DataContext;
-                var spacings = vm.Spacings;
-                var spacingsEqually = spacings.All(s => Math.Abs(s.Value - spacings[0].Value) < 1e-6);
-                var totalDisplayText = spacingsEqually ? spacings[0].Value.ToString() : "Vary";
-                Interval.Text = $"間隔 (mm)：{totalDisplayText}";
-            };
-            editWindow.ShowDialog();
+            DataContext = new MainWindowVm(count);
         }
         else
         {

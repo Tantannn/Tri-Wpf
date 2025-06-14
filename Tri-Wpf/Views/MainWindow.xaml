@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tri_Wpf"
+        xmlns:viewModels="clr-namespace:Tri_Wpf.ViewModels"
         mc:Ignorable="d"
         Title="下部工のユニット登録" Height="381" Width="975"
-        FontSize="12">
+        FontSize="12"
+        d:DataContext="{d:DesignInstance viewModels:MainWindowVm, IsDesignTimeCreatable=True}">
     <Grid Background="#F0F0F0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -63,7 +65,8 @@
                         <TextBlock Text="杭サイズ：" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
                         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="5">
                             <!-- <TextBlock Text="H300×300×10×15" Margin="5"/> -->
-                            <ComboBox Width="130" SelectedValue="{Binding Profile, UpdateSourceTrigger=PropertyChanged}">
+                            <ComboBox Width="130"
+                                      SelectedValue="{Binding Profile, UpdateSourceTrigger=PropertyChanged}">
                                 <ComboBoxItem IsSelected="True">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock>H300×300×10×15</TextBlock>
@@ -94,7 +97,7 @@
                             <Button Content="編集" Click="EditButton_Click" Margin="5 0 0 0" Width="60" Height="22" />
                         </StackPanel>
                         <StackPanel Grid.Row="3" Grid.Column="2" VerticalAlignment="Center">
-                            <TextBlock Text="間隔 (mm)：2000" x:Name="Interval" Grid.Row="5" Grid.Column="0" Margin="5"
+                            <TextBlock Text="{Binding Interval}" Grid.Row="5" Grid.Column="0" Margin="5"
                                        HorizontalAlignment="Right" />
                         </StackPanel>
 
