@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using Tri_Wpf.Models;
+using Tri_Wpf.ViewModels;
 
 namespace Tri_Wpf.Views;
 
@@ -20,8 +22,11 @@ public partial class MainWindow
             editWindow.Closed += (s, args) =>
             {
                 if (editWindow.DialogResult != true) return;
-                var total = editWindow.TotalValue;
-                Interval.Text = $"間隔 (mm)：{total / (count - 1)}";
+                var vm = (SpacingVm)editWindow.DataContext;
+                var spacings = vm.Spacings;
+                var spacingsEqually = spacings.All(s => Math.Abs(s.Value - spacings[0].Value) < 1e-6);
+                var totalDisplayText = spacingsEqually ? spacings[0].Value.ToString() : "Vary";
+                Interval.Text = $"間隔 (mm)：{totalDisplayText}";
             };
             editWindow.ShowDialog();
         }

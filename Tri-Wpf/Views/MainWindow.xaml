@@ -63,7 +63,7 @@
                         <TextBlock Text="杭サイズ：" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
                         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="5">
                             <!-- <TextBlock Text="H300×300×10×15" Margin="5"/> -->
-                            <ComboBox Width="130">
+                            <ComboBox Width="130" SelectedValue="{Binding Profile, UpdateSourceTrigger=PropertyChanged}">
                                 <ComboBoxItem IsSelected="True">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock>H300×300×10×15</TextBlock>
