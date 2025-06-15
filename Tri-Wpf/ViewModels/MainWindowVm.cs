@@ -7,12 +7,36 @@ namespace Tri_Wpf.ViewModels;
 public class MainWindowVm : INotifyPropertyChanged
 {
     private string _interval;
+    bool _hasTopPlate;
+
+    private bool _isComboBoxEnabled;
 
     public string Interval
     {
         get => _interval;
         set => SetField(ref _interval, value);
     }
+
+    public bool HasTopPlate
+    {
+        get => _hasTopPlate;
+        set
+        {
+            if (SetField(ref _hasTopPlate, value))
+            {
+                IsComboBoxEnabled = !value;
+            }
+        }
+    }
+
+
+    public bool IsComboBoxEnabled
+    {
+        get => _isComboBoxEnabled;
+        set => SetField(ref _isComboBoxEnabled, value);
+    }
+
+
     public MainWindowVm(int count)
     {
         var editWindow = new SpacingEdit(count);
@@ -37,7 +61,7 @@ public class MainWindowVm : INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
+    private bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
     {
         if (EqualityComparer<T>.Default.Equals(field, value)) return false;
         field = value;

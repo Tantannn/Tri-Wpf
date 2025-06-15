@@ -12,6 +12,7 @@ public partial class MainWindow
     public MainWindow()
     {
         InitializeComponent();
+        DataContext = new MainWindowVm(0);
     }
 
     private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -30,7 +31,7 @@ public partial class MainWindow
     {
         this.Close();
     }
-    
+
     private void CloseButton_Click(object sender, RoutedEventArgs e)
     {
         this.Close();
