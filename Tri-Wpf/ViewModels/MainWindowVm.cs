@@ -22,10 +22,7 @@ public class MainWindowVm : INotifyPropertyChanged
         get => _hasTopPlate;
         set
         {
-            if (SetField(ref _hasTopPlate, value))
-            {
-                IsComboBoxEnabled = !value;
-            }
+            SetField(ref _hasTopPlate, value);
         }
     }
 
@@ -37,21 +34,22 @@ public class MainWindowVm : INotifyPropertyChanged
     }
 
 
-    public MainWindowVm(int count)
+    public MainWindowVm()
     {
-        var editWindow = new SpacingEdit(count);
-        // MainWindowVm
-        editWindow.Closed += (s, args) =>
-        {
-            if (editWindow.DialogResult != true) return;
-            var vm = (SpacingVm)editWindow.DataContext;
-            var spacings = vm.Spacings;
-            var spacingsEqually = spacings.All(s => Math.Abs(s.Value - spacings[0].Value) < 1e-6);
-            var totalDisplayText = spacingsEqually ? spacings[0].Value.ToString() : "Vary";
-            // Interval.Text = $"間隔 (mm)：{totalDisplayText}";
-            Interval = $"間隔 (mm)：{totalDisplayText}";
-        };
-        editWindow.ShowDialog();
+        // editWindow.ShowDialog();
+        // var editWindow = new SpacingEdit(count);
+        // // MainWindowVm
+        // editWindow.Closed += (s, args) =>
+        // {
+        //     if (editWindow.DialogResult != true) return;
+        //     var vm = (SpacingVm)editWindow.DataContext;
+        //     var spacings = vm.Spacings;
+        //     var spacingsEqually = spacings.All(s => Math.Abs(s.Value - spacings[0].Value) < 1e-6);
+        //     var totalDisplayText = spacingsEqually ? spacings[0].Value.ToString() : "Vary";
+        //     // Interval.Text = $"間隔 (mm)：{totalDisplayText}";
+        //     Interval = $"間隔 (mm)：{totalDisplayText}";
+        // };
+        // editWindow.ShowDialog();
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

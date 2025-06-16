@@ -7,6 +7,15 @@ namespace Tri_Wpf.ViewModels;
 public class SpacingVm : INotifyPropertyChanged
 {
     private string _displayTotal;
+
+    private string _interval;
+
+    public string Interval
+    {
+        get => _interval;
+        set => SetField(ref _interval, value);
+    }
+
     public List<SpacingItem> Spacings { get; set; }
 
     public string DisplayTotal
@@ -31,9 +40,10 @@ public class SpacingVm : INotifyPropertyChanged
             item.PropertyChanged += OnItemPropertyChanged;
             Spacings.Add(item);
         }
+
         UpdateTotal();
     }
-    
+
     private void OnItemPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName == nameof(SpacingItem.Value))
@@ -41,13 +51,13 @@ public class SpacingVm : INotifyPropertyChanged
             UpdateTotal();
         }
     }
-    
+
     private void UpdateTotal()
     {
         var total = Spacings.Sum(x => x?.Value ?? 0);
         DisplayTotal = $"{total} mm";
     }
-    
+
 
     #region Implement INotifyPropertyChanged
 

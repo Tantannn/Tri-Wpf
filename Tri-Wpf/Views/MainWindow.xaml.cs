@@ -12,14 +12,16 @@ public partial class MainWindow
     public MainWindow()
     {
         InitializeComponent();
-        DataContext = new MainWindowVm(0);
+        DataContext = new MainWindowVm();
     }
 
     private void EditButton_Click(object sender, RoutedEventArgs e)
     {
         if (int.TryParse(PileCountTextBox.Text, out var count) && count > 0)
         {
-            DataContext = new MainWindowVm(count);
+            var spacingEdit = new SpacingEdit(count);
+            spacingEdit.ShowDialog();
+            
         }
         else
         {
