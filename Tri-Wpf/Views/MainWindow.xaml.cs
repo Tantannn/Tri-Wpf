@@ -21,7 +21,6 @@ public partial class MainWindow
         {
             var spacingEdit = new SpacingEdit(count);
             spacingEdit.ShowDialog();
-            
         }
         else
         {

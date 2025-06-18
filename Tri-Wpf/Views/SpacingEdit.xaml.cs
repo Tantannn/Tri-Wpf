@@ -7,6 +7,13 @@ namespace Tri_Wpf.Views
     {
         private void ApplyButton_Click(object sender, RoutedEventArgs e)
         {
+            if (DataContext is SpacingVm vm)
+            {
+                var spacings = vm.Spacings;
+                var spacingsEqually = spacings.All(s => Math.Abs(s.Value - spacings[0].Value) < 1e-6);
+                TotalDisplayText = spacingsEqually ? spacings[0].Value.ToString() : "Vary";
+            }
+
             this.DialogResult = true;
             this.Close();
         }
