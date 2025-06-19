@@ -93,8 +93,12 @@
                         <!-- Pile Count -->
                         <TextBlock Text="杭本数：" Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
                         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="5">
-                            <TextBox x:Name="PileCountTextBox" Width="130" Margin="0,0,10,0" Height="22" />
-                            <Button Content="編集" Click="EditButton_Click" Margin="5 0 0 0" Width="60" Height="22" />
+                            <TextBox Text="{Binding NumberOfPiles, Mode=TwoWay}" Width="130" Margin="0,0,10,0" Height="22" />
+                            <Button Content="編集"
+                                    Command="{Binding EditSpacingCommand}"
+                                    Margin="5 0 0 0"
+                                    Width="60"
+                                    Height="22" />
                         </StackPanel>
                         <StackPanel Grid.Row="3" Grid.Column="2" VerticalAlignment="Center">
                             <TextBlock Text="{Binding Interval}" Grid.Row="5" Grid.Column="0" Margin="5"
@@ -107,8 +111,7 @@
                         <!-- <TextBlock Text="SL (mm)：" Grid.Row="4" Grid.Column="0" Margin="5" VerticalAlignment="Center" /> -->
                         <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Margin="5">
                             <ComboBox Width="130" Height="22"
-                                      IsEnabled="{Binding HasTopPlate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      >
+                                      IsEnabled="{Binding HasTopPlate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 <ComboBoxItem IsSelected="True">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock>PL-400×16×400</TextBlock>

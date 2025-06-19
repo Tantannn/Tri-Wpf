@@ -23,6 +23,17 @@ public class SpacingVm : INotifyPropertyChanged
         get => _displayTotal;
         set => SetField(ref _displayTotal, value);
     }
+    
+    
+        // if (int.TryParse(PileCountTextBox.Text, out var count) && count > 0)
+        // {
+        //     var spacingEdit = new SpacingEdit(count);
+        //     spacingEdit.ShowDialog();
+        // }
+        // else
+        // {
+        //     MessageBox.Show("正しい数値を入力してください。", "入力エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
+        // }
 
     public SpacingVm(int count)
     {

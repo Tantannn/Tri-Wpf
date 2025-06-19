@@ -1,5 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows ;
+using System.Windows.Input ;
+using Tri_Wpf.Commands;
+using Tri_Wpf.Models ;
 using Tri_Wpf.Views;
 
 namespace Tri_Wpf.ViewModels;
@@ -7,7 +11,8 @@ namespace Tri_Wpf.ViewModels;
 public class MainWindowVm : INotifyPropertyChanged
 {
     private string _interval;
-    bool _hasTopPlate;
+    private bool _hasTopPlate ;
+    private IList<SpacingItem> _spacingItems ;
 
     private bool _isComboBoxEnabled;
 
@@ -26,31 +31,43 @@ public class MainWindowVm : INotifyPropertyChanged
         }
     }
 
+    private int _numberOfPiles ;
+
+    public int NumberOfPiles
+    {
+        get => _numberOfPiles ;
+        set => SetField( ref _numberOfPiles, value ) ;
+    }
 
     public bool IsComboBoxEnabled
     {
         get => _isComboBoxEnabled;
-        set => SetField(ref _isComboBoxEnabled, value);
+        set => SetField( ref _isComboBoxEnabled, value ) ;
     }
 
-
+    public ICommand EditSpacingCommand { set ; get ; }
+    
     public MainWindowVm()
     {
-        // editWindow.ShowDialog();
-        // var editWindow = new SpacingEdit(count);
-        // // MainWindowVm
-        // editWindow.Closed += (s, args) =>
-        // {
-        //     if (editWindow.DialogResult != true) return;
-        //     var vm = (SpacingVm)editWindow.DataContext;
-        //     var spacings = vm.Spacings;
-        //     var spacingsEqually = spacings.All(s => Math.Abs(s.Value - spacings[0].Value) < 1e-6);
-        //     var totalDisplayText = spacingsEqually ? spacings[0].Value.ToString() : "Vary";
-        //     // Interval.Text = $"間隔 (mm)：{totalDisplayText}";
-        //     Interval = $"間隔 (mm)：{totalDisplayText}";
-        // };
-        // editWindow.ShowDialog();
+        EditSpacingCommand = new RelayCommand( _ =>
+        {
+            if ( NumberOfPiles > 0 ) {
+                var spacingEdit = new SpacingEdit( NumberOfPiles ) ;
+                spacingEdit.ShowDialog() ; // Show() and ShowDialog()
+                var spacingVm = (SpacingVm) spacingEdit.DataContext ;
+                _spacingItems = spacingVm.Spacings ;
+                
+                var spacingsEqually = _spacingItems.All( s => Math.Abs( s.Value - _spacingItems[ 0 ].Value ) < 1e-6 ) ;
+                var totalDisplayText = spacingsEqually ? _spacingItems[ 0 ].Value.ToString() : "Vary" ;
+                Interval = $"間隔 (mm)：{totalDisplayText}" ;
+            }
+            else {
+                MessageBox.Show( "正しい数値を入力してください。", "入力エラー", MessageBoxButton.OK, MessageBoxImage.Warning ) ;
+            }
+        }, _ => true ) ;
     }
+    
+    // public void OpenSpacingVn
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -67,3 +84,4 @@ public class MainWindowVm : INotifyPropertyChanged
         return true;
     }
 }
+
