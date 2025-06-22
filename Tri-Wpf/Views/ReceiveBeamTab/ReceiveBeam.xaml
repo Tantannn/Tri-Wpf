@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Tri_Wpf.Views.ReceiveBeamTab"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:viewModels="clr-namespace:Tri_Wpf.ViewModels"
              mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModels:MainWindowVm, IsDesignTimeCreatable=True}"
              d:DesignHeight="*" d:DesignWidth="*">
     <Grid>
 
@@ -13,7 +14,8 @@
             <StackPanel DockPanel.Dock="Left" Margin="9">
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,9">
                     <TextBlock Text="左受衔サイズ：" VerticalAlignment="Center" Margin="0,0,10,0" Width="70" />
-                    <TextBox Text="-200×80×7.5×11" Width="120" />
+                    <TextBox Width="120"
+                             Text="{Binding Profile, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Text=" x 数量：" VerticalAlignment="Center" Margin="9,0,0,0" Width="45" />
                     <xctk:IntegerUpDown Width="52" Value="5" Minimum="0" Maximum="100" />
                     <Button Content="ボルト設定" Margin="10, 0 0, 0" Width="107" />
