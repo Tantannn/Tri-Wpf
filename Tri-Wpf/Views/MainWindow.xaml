@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="下部工のユニット登録" Height="381" Width="975"
         FontSize="12"
+        xmlns:tabControl="clr-namespace:Tri_Wpf.Views.ReceiveBeamTab"
         d:DataContext="{d:DesignInstance viewModels:MainWindowVm, IsDesignTimeCreatable=True}">
     <Grid Background="#F0F0F0">
         <Grid.ColumnDefinitions>
@@ -44,53 +45,9 @@
             </Grid>
 
             <!-- Tab Control -->
-            <TabControl Grid.Row="1" Margin="0,9,0,-2">
+            <TabControl Grid.Row="1" Margin="0,0,0,-2">
                 <TabItem Header="受桁" Width="60" Margin="-4 0 0 0">
-                    <DockPanel Margin="10">
-                        <!-- Left section -->
-                        <StackPanel DockPanel.Dock="Left" Width="*" Margin="0,0,20,0">
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                                <TextBlock Text="左受衔サイズ：" VerticalAlignment="Center" Margin="0,0,10,0" Width="70px" />
-                                <TextBox Text="-200×80×7.5×11" Width="120" />
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                                <TextBlock Text="左受衔サイズ：" VerticalAlignment="Center" Margin="0,0,10,0" Width="70px" />
-                                <TextBox Text="-200×80×7.5×11" Width="120" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                                <TextBlock Text="G_HL (mm)：" Margin="0,0,0,5" Width="70px" />
-                                <TextBox Text="500" Margin="0,0,0,10" Width="120" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                                <TextBlock Text="G_HTL (mm)：" Margin="0,0,0,5" Width="70px" />
-                                <TextBox Text="0" Margin="0,0,0,10" Width="120" />
-                            </StackPanel>
-                        </StackPanel>
-
-                        <!-- Right section -->
-                        <StackPanel DockPanel.Dock="Right" Width="100" Margin="20,0,0,0">
-                            <TextBlock Text="右受衔サイズ：" Margin="0,0,0,5" />
-                            <TextBox Text="-200×80×7.5×11" Margin="0,0,0,10" />
-
-                            <TextBlock Text="G_HR (mm)：" Margin="0,0,0,5" />
-                            <TextBox Text="500" Margin="0,0,0,10" />
-
-                            <TextBlock Text="G_HTR (mm)：" Margin="0,0,0,5" />
-                            <TextBox Text="0" Margin="0,0,0,10" />
-                        </StackPanel>
-
-                        <!-- Center section -->
-                        <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center">
-                            <TextBlock Text="数量：" Margin="0,0,0,5" />
-                            <TextBox Text="1" Width="60" HorizontalAlignment="Center" Margin="0,0,0,10" />
-
-                            <TextBlock Text="数量：" Margin="0,0,0,5" />
-                            <TextBox Text="2" Width="60" HorizontalAlignment="Center" Margin="0,0,0,20" />
-
-                            <Button Content="ボルト設定" Width="100" HorizontalAlignment="Center" />
-                        </StackPanel>
-                    </DockPanel>
+                    <tabControl:ReceiveBeam Width="500" Height="300" />
                 </TabItem>
                 <TabItem Header="杭" Width="45" Margin="-4 0 0 0">
                     <Grid Margin="5">
