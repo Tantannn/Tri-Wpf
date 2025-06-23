@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
@@ -10,7 +11,7 @@ using Tri_Wpf.Views;
 
 namespace Tri_Wpf.ViewModels;
 
-public class MainWindowVm : INotifyPropertyChanged
+public sealed class MainWindowVm : INotifyPropertyChanged
 {
     private string _interval;
     private bool _hasTopPlate;
@@ -24,13 +25,13 @@ public class MainWindowVm : INotifyPropertyChanged
     public string Interval
     {
         get => _interval;
-        set => SetField(ref _interval, value);
+        private set => SetField(ref _interval, value);
     }
 
     public bool HasTopPlate
     {
         get => _hasTopPlate;
-        set { SetField(ref _hasTopPlate, value); }
+        set => SetField(ref _hasTopPlate, value);
     }
 
 
@@ -40,13 +41,13 @@ public class MainWindowVm : INotifyPropertyChanged
         set => SetField(ref _numberOfPiles, value);
     }
 
-    public int SF
+    public int Sf
     {
         get => _sf;
         set => SetField(ref _sf, value);
     }
 
-    public int SL
+    public int Sl
     {
         get => _sl;
         set => SetField(ref _sl, value);
@@ -70,6 +71,9 @@ public class MainWindowVm : INotifyPropertyChanged
 
     public MainWindowVm()
     {
+        _interval = "間隔 (mm)：2000";
+        _spacingItems = new List<SpacingItem>();
+        _profile = "H300×300×10×15";
         EditSpacingCommand = new RelayCommand(_ =>
         {
             if (NumberOfPiles > 0)
@@ -80,7 +84,8 @@ public class MainWindowVm : INotifyPropertyChanged
                 _spacingItems = spacingVm.Spacings;
 
                 var spacingsEqually = _spacingItems.All(s => Math.Abs(s.Value - _spacingItems[0].Value) < 1e-6);
-                var totalDisplayText = spacingsEqually ? _spacingItems[0].Value.ToString() : "Vary";
+                var totalDisplayText =
+                    spacingsEqually ? _spacingItems[0].Value.ToString(CultureInfo.InvariantCulture) : "Vary";
                 Interval = $"間隔 (mm)：{totalDisplayText}";
             }
             else
@@ -96,17 +101,16 @@ public class MainWindowVm : INotifyPropertyChanged
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    private bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
+    private void SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
     {
-        if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+        if (EqualityComparer<T>.Default.Equals(field, value)) return;
         field = value;
         OnPropertyChanged(propertyName);
-        return true;
     }
 
     private void SaveToJson()
@@ -117,8 +121,8 @@ public class MainWindowVm : INotifyPropertyChanged
             Interval,
             HasTopPlate,
             NumberOfPiles,
-            SF,
-            SL,
+            SF = Sf,
+            SL = Sl,
             Profile,
             SpacingItems = _spacingItems
         };
