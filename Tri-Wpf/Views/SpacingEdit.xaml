@@ -16,7 +16,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <DataGrid x:Name="SpacingGrid"
+        <DataGrid
                   ItemsSource="{Binding Spacings}"
                   AutoGenerateColumns="False"
                   HeadersVisibility="Column"

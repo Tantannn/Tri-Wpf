@@ -12,36 +12,36 @@
 
         <DockPanel Margin="0">
             <StackPanel DockPanel.Dock="Left" Margin="9">
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,9">
-                    <TextBlock Text="左受衔サイズ：" VerticalAlignment="Center" Margin="0,0,10,0" Width="70" />
-                    <TextBox Width="120"
-                             Text="{Binding Profile, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Text=" x 数量：" VerticalAlignment="Center" Margin="9,0,0,0" Width="45" />
-                    <xctk:IntegerUpDown Width="52" Value="5" Minimum="0" Maximum="100" />
-                    <Button Content="ボルト設定" Margin="10, 0 0, 0" Width="107" />
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,9">
-                    <TextBlock Text="左受衔サイズ：" VerticalAlignment="Center" Margin="0,0,10,0" Width="70" />
-                    <TextBox Text="-200×80×7.5×11" Width="120" />
-                    <TextBlock Text=" x 数量：" VerticalAlignment="Center" Margin="9,0,0,0" Width="45" />
-                    <xctk:IntegerUpDown Width="52" Value="5" Minimum="0" Maximum="100" />
-                    <Button Content="ボルト設定" Margin="10, 0 0, 0" Width="107" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,9">
-                    <TextBlock Text="G_HL (mm)：" Margin="0,0,11,0" Width="70" VerticalAlignment="Center" />
-                    <TextBox Text="500" Width="120" />
-
-                    <TextBlock Text="G_HL (mm)：" Margin="10,0,11,0" Width="70" VerticalAlignment="Center" />
-                    <TextBox Text="500" Width="120" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <TextBlock Text="G_HTL (mm)：" Margin="0,0,11,0" Width="70" VerticalAlignment="Center" />
-                    <TextBox Text="0" Width="120" />
-
-                    <TextBlock Text="G_HL (mm)：" Margin="10,0,11,0" Width="70" VerticalAlignment="Center" />
-                    <TextBox Text="500" Width="120" />
-                </StackPanel>
+                <!-- <StackPanel Orientation="Horizontal" Margin="0,0,0,9"> -->
+                <!--     <TextBlock Text="左受衔サイズ：" VerticalAlignment="Center" Margin="0,0,10,0" Width="70" /> -->
+                <!--     <TextBox Width="120" -->
+                <!--              Text="{Binding Profile, UpdateSourceTrigger=PropertyChanged}" /> -->
+                <!--     <TextBlock Text=" x 数量：" VerticalAlignment="Center" Margin="9,0,0,0" Width="45" /> -->
+                <!--     <xctk:IntegerUpDown Width="52" Value="5" Minimum="0" Maximum="100" /> -->
+                <!--     <Button Content="ボルト設定" Margin="10, 0 0, 0" Width="107" /> -->
+                <!-- </StackPanel> -->
+                <!-- -->
+                <!-- <StackPanel Orientation="Horizontal" Margin="0,0,0,9"> -->
+                <!--     <TextBlock Text="左受衔サイズ：" VerticalAlignment="Center" Margin="0,0,10,0" Width="70" /> -->
+                <!--     <TextBox Text="-200×80×7.5×11" Width="120" /> -->
+                <!--     <TextBlock Text=" x 数量：" VerticalAlignment="Center" Margin="9,0,0,0" Width="45" /> -->
+                <!--     <xctk:IntegerUpDown Width="52" Value="5" Minimum="0" Maximum="100" /> -->
+                <!--     <Button Content="ボルト設定" Margin="10, 0 0, 0" Width="107" /> -->
+                <!-- </StackPanel> -->
+                <!-- <StackPanel Orientation="Horizontal" Margin="0,0,0,9"> -->
+                <!--     <TextBlock Text="G_HL (mm)：" Margin="0,0,11,0" Width="70" VerticalAlignment="Center" /> -->
+                <!--     <TextBox Text="500" Width="120" /> -->
+                <!-- -->
+                <!--     <TextBlock Text="G_HL (mm)：" Margin="10,0,11,0" Width="70" VerticalAlignment="Center" /> -->
+                <!--     <TextBox Text="500" Width="120" /> -->
+                <!-- </StackPanel> -->
+                <!-- <StackPanel Orientation="Horizontal" Margin="0,0,0,10"> -->
+                <!--     <TextBlock Text="G_HTL (mm)：" Margin="0,0,11,0" Width="70" VerticalAlignment="Center" /> -->
+                <!--     <TextBox Text="0" Width="120" /> -->
+                <!-- -->
+                <!--     <TextBlock Text="G_HL (mm)：" Margin="10,0,11,0" Width="70" VerticalAlignment="Center" /> -->
+                <!--     <TextBox Text="500" Width="120" /> -->
+                <!-- </StackPanel> -->
             </StackPanel>
         </DockPanel>
     </Grid>

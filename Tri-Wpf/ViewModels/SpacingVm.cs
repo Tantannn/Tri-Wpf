@@ -4,7 +4,7 @@ using Tri_Wpf.Models;
 
 namespace Tri_Wpf.ViewModels;
 
-public class SpacingVm : INotifyPropertyChanged
+public sealed class SpacingVm : BaseViewModel
 {
     private string _displayTotal;
 
@@ -21,19 +21,19 @@ public class SpacingVm : INotifyPropertyChanged
     public string DisplayTotal
     {
         get => _displayTotal;
-        set => SetField(ref _displayTotal, value);
+        private set => SetField(ref _displayTotal, value);
     }
-    
-    
-        // if (int.TryParse(PileCountTextBox.Text, out var count) && count > 0)
-        // {
-        //     var spacingEdit = new SpacingEdit(count);
-        //     spacingEdit.ShowDialog();
-        // }
-        // else
-        // {
-        //     MessageBox.Show("正しい数値を入力してください。", "入力エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
-        // }
+
+
+    // if (int.TryParse(PileCountTextBox.Text, out var count) && count > 0)
+    // {
+    //     var spacingEdit = new SpacingEdit(count);
+    //     spacingEdit.ShowDialog();
+    // }
+    // else
+    // {
+    //     MessageBox.Show("正しい数値を入力してください。", "入力エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
+    // }
 
     public SpacingVm(int count)
     {
@@ -68,24 +68,4 @@ public class SpacingVm : INotifyPropertyChanged
         var total = Spacings.Sum(x => x?.Value ?? 0);
         DisplayTotal = $"{total} mm";
     }
-
-
-    #region Implement INotifyPropertyChanged
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
-    {
-        if (EqualityComparer<T>.Default.Equals(field, value)) return false;
-        field = value;
-        OnPropertyChanged(propertyName);
-        return true;
-    }
-
-    #endregion
 }

@@ -1,17 +1,16 @@
-﻿using System.ComponentModel;
-using System.Globalization;
+﻿using System.Globalization;
 using System.IO;
-using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
 using Tri_Wpf.Commands;
+using Tri_Wpf.Extentions;
 using Tri_Wpf.Models;
 using Tri_Wpf.Views;
 
 namespace Tri_Wpf.ViewModels;
 
-public sealed class MainWindowVm : INotifyPropertyChanged
+public sealed class MainWindowVm : BaseViewModel
 {
     private string _interval;
     private bool _hasTopPlate;
@@ -97,22 +96,6 @@ public sealed class MainWindowVm : INotifyPropertyChanged
         SaveToJsonCommand = new RelayCommand(_ => SaveToJson());
     }
 
-    // public void OpenSpacingVn
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    private void SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
-    {
-        if (EqualityComparer<T>.Default.Equals(field, value)) return;
-        field = value;
-        OnPropertyChanged(propertyName);
-    }
-
     private void SaveToJson()
     {
         // Save current VM data to JSON
@@ -131,14 +114,14 @@ public sealed class MainWindowVm : INotifyPropertyChanged
 
         var dialog = new Microsoft.Win32.SaveFileDialog
         {
-            FileName = "savedata.json",
+            FileName = "saved.json",
             Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*"
         };
 
         if (dialog.ShowDialog() == true)
         {
             File.WriteAllText(dialog.FileName, json);
-            MessageBox.Show($"データを保存しました: {dialog.FileName}", "完了", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBoxExtension.ShowOk($"データを保存しました: {dialog.FileName}", "完了");
         }
     }
 }
