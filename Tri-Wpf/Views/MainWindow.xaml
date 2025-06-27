@@ -70,18 +70,8 @@
                         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="5">
                             <!-- <TextBlock Text="H300×300×10×15" Margin="5"/> -->
                             <ComboBox Width="130"
-                                      SelectedValue="{Binding Profile, UpdateSourceTrigger=PropertyChanged}">
-                                <ComboBoxItem IsSelected="True">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock>H300×300×10×15</TextBlock>
-                                    </StackPanel>
-                                </ComboBoxItem>
-                                <ComboBoxItem IsSelected="True">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock>H300×300×10×15</TextBlock>
-                                    </StackPanel>
-                                </ComboBoxItem>
-                            </ComboBox>
+                                      ItemsSource="{Binding ProfileOptions}"
+                                      SelectedItem="{Binding Profile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
 
                         <TextBlock Text="SL (mm)：" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center" />

@@ -64,15 +64,23 @@ public sealed class MainWindowVm : BaseViewModel
         set => SetField(ref _profile, value);
     }
 
+    public List<string> ProfileOptions { get; } = new()
+    {
+        "H300×300×10×15",
+        "H300×300×10×10",
+        "H300×300×10×150",
+        "H300×300×10×151"
+    };
+
     public ICommand EditSpacingCommand { set; get; }
 
     public ICommand SaveToJsonCommand { get; }
 
     public MainWindowVm()
     {
+        _profile = ProfileOptions.First(); // set default
         _interval = "間隔 (mm)：2000";
         _spacingItems = new List<SpacingItem>();
-        _profile = "H300×300×10×15";
         EditSpacingCommand = new RelayCommand(_ =>
         {
             if (NumberOfPiles > 0)
