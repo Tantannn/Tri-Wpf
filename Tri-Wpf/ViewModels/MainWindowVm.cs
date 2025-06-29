@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
 using Tri_Wpf.Commands;
+using Tri_Wpf.Core;
 using Tri_Wpf.Extentions;
 using Tri_Wpf.Models;
 using Tri_Wpf.Views;
@@ -64,13 +65,13 @@ public sealed class MainWindowVm : BaseViewModel
         set => SetField(ref _profile, value);
     }
 
-    public List<string> ProfileOptions { get; } = new()
-    {
+    public List<string> ProfileOptions { get; } =
+    [
         "H300×300×10×15",
         "H300×300×10×10",
         "H300×300×10×150",
         "H300×300×10×151"
-    };
+    ];
 
     public ICommand EditSpacingCommand { set; get; }
 
@@ -126,10 +127,8 @@ public sealed class MainWindowVm : BaseViewModel
             Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*"
         };
 
-        if (dialog.ShowDialog() == true)
-        {
-            File.WriteAllText(dialog.FileName, json);
-            MessageBoxExtension.ShowOk($"データを保存しました: {dialog.FileName}", "完了");
-        }
+        if (dialog.ShowDialog() != true) return;
+        File.WriteAllText(dialog.FileName, json);
+        MessageBoxExtension.ShowOk($"データを保存しました: {dialog.FileName}", "完了");
     }
 }

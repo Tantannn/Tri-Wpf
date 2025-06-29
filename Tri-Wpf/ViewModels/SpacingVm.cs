@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Tri_Wpf.Core;
 using Tri_Wpf.Models;
 
 namespace Tri_Wpf.ViewModels;

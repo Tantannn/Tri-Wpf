@@ -3,46 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-             xmlns:viewModels="clr-namespace:Tri_Wpf.ViewModels"
+             xmlns:viewModels="clr-namespace:Tri_Wpf.ViewModels.ReceiveBeamVm"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance viewModels:MainWindowVm, IsDesignTimeCreatable=True}"
+             d:DataContext="{d:DesignInstance viewModels:ReceiveBeamVm, IsDesignTimeCreatable=True}"
              d:DesignHeight="*" d:DesignWidth="*">
     <Grid>
+        <DataGrid ItemsSource="{Binding GirderSteps}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <!-- Simple column for the integer Step property -->
+                <DataGridTextColumn Header="Step" Binding="{Binding Step}" />
 
-        <DockPanel Margin="0">
-            <StackPanel DockPanel.Dock="Left" Margin="9">
-                <!-- <StackPanel Orientation="Horizontal" Margin="0,0,0,9"> -->
-                <!--     <TextBlock Text="左受衔サイズ：" VerticalAlignment="Center" Margin="0,0,10,0" Width="70" /> -->
-                <!--     <TextBox Width="120" -->
-                <!--              Text="{Binding Profile, UpdateSourceTrigger=PropertyChanged}" /> -->
-                <!--     <TextBlock Text=" x 数量：" VerticalAlignment="Center" Margin="9,0,0,0" Width="45" /> -->
-                <!--     <xctk:IntegerUpDown Width="52" Value="5" Minimum="0" Maximum="100" /> -->
-                <!--     <Button Content="ボルト設定" Margin="10, 0 0, 0" Width="107" /> -->
-                <!-- </StackPanel> -->
-                <!-- -->
-                <!-- <StackPanel Orientation="Horizontal" Margin="0,0,0,9"> -->
-                <!--     <TextBlock Text="左受衔サイズ：" VerticalAlignment="Center" Margin="0,0,10,0" Width="70" /> -->
-                <!--     <TextBox Text="-200×80×7.5×11" Width="120" /> -->
-                <!--     <TextBlock Text=" x 数量：" VerticalAlignment="Center" Margin="9,0,0,0" Width="45" /> -->
-                <!--     <xctk:IntegerUpDown Width="52" Value="5" Minimum="0" Maximum="100" /> -->
-                <!--     <Button Content="ボルト設定" Margin="10, 0 0, 0" Width="107" /> -->
-                <!-- </StackPanel> -->
-                <!-- <StackPanel Orientation="Horizontal" Margin="0,0,0,9"> -->
-                <!--     <TextBlock Text="G_HL (mm)：" Margin="0,0,11,0" Width="70" VerticalAlignment="Center" /> -->
-                <!--     <TextBox Text="500" Width="120" /> -->
-                <!-- -->
-                <!--     <TextBlock Text="G_HL (mm)：" Margin="10,0,11,0" Width="70" VerticalAlignment="Center" /> -->
-                <!--     <TextBox Text="500" Width="120" /> -->
-                <!-- </StackPanel> -->
-                <!-- <StackPanel Orientation="Horizontal" Margin="0,0,0,10"> -->
-                <!--     <TextBlock Text="G_HTL (mm)：" Margin="0,0,11,0" Width="70" VerticalAlignment="Center" /> -->
-                <!--     <TextBox Text="0" Width="120" /> -->
-                <!-- -->
-                <!--     <TextBlock Text="G_HL (mm)：" Margin="10,0,11,0" Width="70" VerticalAlignment="Center" /> -->
-                <!--     <TextBox Text="500" Width="120" /> -->
-                <!-- </StackPanel> -->
-            </StackPanel>
-        </DockPanel>
+                <!-- Template column for more complex PillarMaterial display -->
+                <DataGridTemplateColumn Header="Pillar Material">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding PillarMaterial}"
+                                       Padding="5"
+                                       VerticalAlignment="Center" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <ComboBox
+                                SelectedItem="{Binding PillarMaterial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                IsEditable="True" />
+                            <!-- ItemsSource="{Binding DataContext.AvailableMaterials,  
+                                       RelativeSource={RelativeSource AncestorType=DataGrid}}" -->
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Action" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Execute"
+                                    Command="{Binding DataContext.GirderStepCommand, 
+                                                    RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    CommandParameter="{Binding}"
+                                    Padding="5"
+                                    Margin="2"
+                                    MinWidth="80" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </UserControl>
