@@ -4,10 +4,10 @@ using Tri_Wpf.Core;
 
 namespace Tri_Wpf.Models;
 
-public abstract class GirderStepItem(string pillarMaterial) : BaseViewModel
+public  class GirderStepItem() : BaseViewModel
 {
     private int _step;
-    private string _pillarMaterial = pillarMaterial;
+    private string _pillarMaterial = "black";
 
     public int Step
     {

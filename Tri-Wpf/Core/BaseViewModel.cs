@@ -18,4 +18,15 @@ public class BaseViewModel : INotifyPropertyChanged
         OnPropertyChanged(propertyName);
         return true;
     }
+    protected void OnItemPropertyChanged<T>(
+        object? sender, PropertyChangedEventArgs e,
+        string propertyNameToWatch,
+        Action callback)
+        where T : INotifyPropertyChanged
+    {
+        if (e.PropertyName == propertyNameToWatch)
+        {
+            callback();
+        }
+    }
 }

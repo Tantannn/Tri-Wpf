@@ -6,15 +6,17 @@
              xmlns:viewModels="clr-namespace:Tri_Wpf.ViewModels.ReceiveBeamVm"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModels:ReceiveBeamVm, IsDesignTimeCreatable=True}"
+             Width="500"
              d:DesignHeight="*" d:DesignWidth="*">
+    
     <Grid>
-        <DataGrid ItemsSource="{Binding GirderSteps}" AutoGenerateColumns="False">
-            <DataGrid.Columns>
+        <DataGrid ItemsSource="{Binding GirderSteps}" AutoGenerateColumns="False" HorizontalAlignment="Stretch" >
+            <DataGrid.Columns >
                 <!-- Simple column for the integer Step property -->
-                <DataGridTextColumn Header="Step" Binding="{Binding Step}" />
+                <DataGridTextColumn Header="Step" Binding="{Binding Step}" Width="70"/>
 
                 <!-- Template column for more complex PillarMaterial display -->
-                <DataGridTemplateColumn Header="Pillar Material">
+                <DataGridTemplateColumn Header="Pillar Material" Width="314">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding PillarMaterial}"
@@ -33,7 +35,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Action" Width="Auto">
+                <DataGridTemplateColumn Header="Action" Width="68">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Execute"
