@@ -4,6 +4,7 @@ using Tri_Wpf.Core;
 
 namespace Tri_Wpf.Models;
 
+
 public class SpacingItem : BaseViewModel
 {
     private string _cmd;
