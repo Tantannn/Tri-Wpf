@@ -8,48 +8,52 @@
              d:DataContext="{d:DesignInstance viewModels:ReceiveBeamVm, IsDesignTimeCreatable=True}"
              Width="500"
              d:DesignHeight="*" d:DesignWidth="*">
-    
-    <Grid>
-        <DataGrid ItemsSource="{Binding GirderSteps}" AutoGenerateColumns="False" HorizontalAlignment="Stretch" >
-            <DataGrid.Columns >
-                <!-- Simple column for the integer Step property -->
-                <DataGridTextColumn Header="Step" Binding="{Binding Step}" Width="70"/>
 
-                <!-- Template column for more complex PillarMaterial display -->
-                <DataGridTemplateColumn Header="Pillar Material" Width="314">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding PillarMaterial}"
-                                       Padding="5"
-                                       VerticalAlignment="Center" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
+    <StackPanel>
+        <Grid>
+            <DataGrid ItemsSource="{Binding GirderSteps}" AutoGenerateColumns="False" HorizontalAlignment="Stretch"
+                      Height="200">
+                <DataGrid.Columns>
+                    <!-- Simple column for the integer Step property -->
+                    <DataGridTextColumn Header="Step" Binding="{Binding Step}" Width="70" />
 
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate>
-                            <ComboBox
-                                SelectedItem="{Binding PillarMaterial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                IsEditable="True" />
-                            <!-- ItemsSource="{Binding DataContext.AvailableMaterials,  
+                    <!-- Template column for more complex PillarMaterial display -->
+                    <DataGridTemplateColumn Header="Pillar Material" Width="314">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding PillarMaterial}"
+                                           Padding="5"
+                                           VerticalAlignment="Center" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <ComboBox
+                                    SelectedItem="{Binding PillarMaterial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    IsEditable="True" />
+                                <!-- ItemsSource="{Binding DataContext.AvailableMaterials,  
                                        RelativeSource={RelativeSource AncestorType=DataGrid}}" -->
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Action" Width="68">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Execute"
-                                    Command="{Binding DataContext.GirderStepCommand, 
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Action" Width="68">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Execute"
+                                        Command="{Binding DataContext.GirderStepCommand, 
                                                     RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                    CommandParameter="{Binding}"
-                                    Padding="5"
-                                    Margin="2"
-                                    MinWidth="80" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                                        CommandParameter="{Binding}"
+                                        Padding="5"
+                                        Margin="2"
+                                        MinWidth="80" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
 
-    </Grid>
+                    <TextBlock Text="TEST VISIBILITY" Foreground="Red" FontSize="20"/>
+        </Grid>
+    </StackPanel>
 </UserControl>

@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using Tri_Wpf.Models;
 using Tri_Wpf.ViewModels;
+using Tri_Wpf.ViewModels.ReceiveBeamVm;
 
 namespace Tri_Wpf.Views;
 
@@ -14,6 +15,7 @@ public partial class MainWindow
         InitializeComponent();
         DataContext = new MainWindowVm();
     }
+
 
     private void OkButton_Click(object sender, RoutedEventArgs e)
     {

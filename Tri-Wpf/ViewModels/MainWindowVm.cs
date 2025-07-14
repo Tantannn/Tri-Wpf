@@ -73,6 +73,7 @@ public sealed class MainWindowVm : BaseViewModel
         "H300×300×10×151"
     ];
 
+    public ReceiveBeamVm.ReceiveBeamVm ReceiveBeamVm { get; } = new ReceiveBeamVm.ReceiveBeamVm();
     public ICommand EditSpacingCommand { set; get; }
 
     public ICommand SaveToJsonCommand { get; }
@@ -82,6 +83,7 @@ public sealed class MainWindowVm : BaseViewModel
         _profile = ProfileOptions.First(); // set default
         _interval = "間隔 (mm)：2000";
         _spacingItems = new List<SpacingItem>();
+        
         EditSpacingCommand = new RelayCommand(_ =>
         {
             if (NumberOfPiles > 0)

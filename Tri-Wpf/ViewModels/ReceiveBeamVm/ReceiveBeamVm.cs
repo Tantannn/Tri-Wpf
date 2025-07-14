@@ -18,9 +18,15 @@ public class ReceiveBeamVm : BaseViewModel
 
 
         var item = new GirderStepItem
-        {
-        };
+            {
+                Step = 1, 
+                PillarMaterial= "asb"
+            };
+
         item.PropertyChanged += OnItemPropertyChanged;
+        GirderSteps.Add(item);
+        GirderSteps.Add(item);
+        GirderSteps.Add(item);
         GirderSteps.Add(item);
     }
     

@@ -45,9 +45,10 @@
 
             <!-- Tab Control -->
             <TabControl Grid.Row="1" Margin="0,0,0,-2">
-                <TabItem Header="受桁" Width="60" Margin="-4 0 0 0">
-                    <tabControl:ReceiveBeam Width="500" Height="300" />
+                <TabItem Header="受桁">
+                    <tabControl:ReceiveBeam DataContext="{Binding ReceiveBeamVm}" />
                 </TabItem>
+
                 <TabItem Header="杭" Width="45" Margin="-4 0 0 0">
                     <Grid Margin="5">
                         <Grid.RowDefinitions>
