@@ -12,7 +12,20 @@
     <StackPanel>
         <Grid>
             <DataGrid ItemsSource="{Binding GirderSteps}" AutoGenerateColumns="False" HorizontalAlignment="Stretch"
+                      SelectionMode="Single"
+                      SelectionUnit="FullRow"
                       Height="200">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="IsEnabled" Value="True" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsLastRow}" Value="true">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Setter Property="Background" Value="LightGray" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
                 <DataGrid.Columns>
                     <!-- Simple column for the integer Step property -->
                     <DataGridTextColumn Header="Step" Binding="{Binding Step}" Width="70" />
@@ -52,8 +65,21 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-
-                    <TextBlock Text="TEST VISIBILITY" Foreground="Red" FontSize="20"/>
         </Grid>
+
+        <DockPanel Grid.Row="1" Margin="0 9 0 0" LastChildFill="False">
+            <!-- Left-aligned content -->
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                <Button Content="add" Margin="0,0,10,0" Width="48" />
+                <Button Content="delete" Width="48" />
+            </StackPanel>
+
+            <!-- Right-aligned buttons -->
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                <Button Content="up" Margin="0,0,10,0" Width="48" />
+                <Button Content="down" Width="48" />
+            </StackPanel>
+        </DockPanel>
+
     </StackPanel>
 </UserControl>

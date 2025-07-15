@@ -20,4 +20,6 @@ public  class GirderStepItem() : BaseViewModel
         get => _pillarMaterial;
         set => SetField(ref _pillarMaterial, value);
     }
+
+    public bool IsLastRow { get; set; }
 }

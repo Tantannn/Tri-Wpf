@@ -14,22 +14,21 @@ public class ReceiveBeamVm : BaseViewModel
         // GirderSteps = girderSteps;
         // GirderStepCommand = girderStepCommand;
 
-        GirderSteps = [];
+        GirderSteps = new List<GirderStepItem>();
 
-
-        var item = new GirderStepItem
+        // Add 4 sample items (last one will be disabled)
+        for (int i = 1; i <= 4; i++)
+        {
+            var item = new GirderStepItem
             {
-                Step = 1, 
-                PillarMaterial= "asb"
+                Step = i,
+                PillarMaterial = $"Material-{i}",
+                IsLastRow = (i == 4) // Mark last item
             };
-
-        item.PropertyChanged += OnItemPropertyChanged;
-        GirderSteps.Add(item);
-        GirderSteps.Add(item);
-        GirderSteps.Add(item);
-        GirderSteps.Add(item);
+            GirderSteps.Add(item);
+        }
     }
-    
+
     private void OnItemPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName == nameof(SpacingItem.Value))
