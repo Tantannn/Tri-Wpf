@@ -70,7 +70,7 @@
         <DockPanel Grid.Row="1" Margin="0 9 0 0" LastChildFill="False">
             <!-- Left-aligned content -->
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
-                <Button Content="add" Margin="0,0,10,0" Width="48" />
+                <Button Content="add" Margin="0,0,10,0" Width="48" Command="{Binding AddCommand}"/>
                 <Button Content="delete" Width="48" />
             </StackPanel>
 
