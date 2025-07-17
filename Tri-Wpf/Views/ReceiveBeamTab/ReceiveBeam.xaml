@@ -14,6 +14,7 @@
             <DataGrid ItemsSource="{Binding GirderSteps}" AutoGenerateColumns="False" HorizontalAlignment="Stretch"
                       SelectionMode="Single"
                       SelectionUnit="FullRow"
+                      SelectedItem="{Binding SelectedItem}"
                       Height="200">
                 <DataGrid.RowStyle>
                     <Style TargetType="DataGridRow">
@@ -71,7 +72,7 @@
             <!-- Left-aligned content -->
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
                 <Button Content="add" Margin="0,0,10,0" Width="48" Command="{Binding AddCommand}"/>
-                <Button Content="delete" Width="48" />
+                <Button Content="delete" Width="48" Command="{Binding DeleteCommand}"/>
             </StackPanel>
 
             <!-- Right-aligned buttons -->

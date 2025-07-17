@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows.Input;
 using Tri_Wpf.Commands;
 using Tri_Wpf.Core;
@@ -8,15 +10,26 @@ namespace Tri_Wpf.ViewModels.ReceiveBeamVm;
 
 public class ReceiveBeamVm : BaseViewModel
 {
-    public ICommand GirderStepCommand { set; get; }
+    public ICommand GirderStepCommand { get; }
     public ICommand AddCommand { get; }
+    public ICommand DeleteCommand { get; }
+
+    private GirderStepItem _selectedItem;
+
+    public GirderStepItem SelectedItem
+    {
+        get => _selectedItem;
+        set => SetField(ref _selectedItem, value);
+    }
 
     public ReceiveBeamVm()
     {
-        GirderSteps = new List<GirderStepItem>();
+        GirderSteps = new ObservableCollection<GirderStepItem>();
 
         // Initialize commands
         AddCommand = new RelayCommand(_ => AddItem());
+        DeleteCommand = new RelayCommand(_ => DeleteItem());
+        GirderStepCommand = new RelayCommand(ExecuteGirderStep);
 
         // Add sample data
         for (int i = 1; i <= 4; i++)
@@ -31,15 +44,35 @@ public class ReceiveBeamVm : BaseViewModel
         }
     }
 
+    private void ExecuteGirderStep(object parameter)
+    {
+        // Implement your command logic here
+        if (parameter is GirderStepItem item)
+        {
+            Debug.WriteLine($"Executing command for step {item.Step}");
+        }
+    }
+
     private void AddItem()
     {
+        Debug.WriteLine("AddItem executed");
         var newItem = new GirderStepItem
         {
             Step = GirderSteps.Count + 1,
+            // IsLastRow = GirderSteps.Count + 1,
             PillarMaterial = "New Material"
         };
         GirderSteps.Add(newItem);
         UpdateStepNumbers();
+    }
+
+    private void DeleteItem()
+    {
+        if (SelectedItem != null && SelectedItem.IsLastRow == false)
+        {
+            GirderSteps.Remove(SelectedItem);
+            UpdateStepNumbers();
+        }
     }
 
     private void UpdateStepNumbers()
@@ -51,12 +84,5 @@ public class ReceiveBeamVm : BaseViewModel
         }
     }
 
-    private void OnItemPropertyChanged(object? sender, PropertyChangedEventArgs e)
-    {
-        if (e.PropertyName == nameof(SpacingItem.Value))
-        {
-        }
-    }
-
-    public List<GirderStepItem> GirderSteps { get; set; }
+    public ObservableCollection<GirderStepItem> GirderSteps { get; }
 }

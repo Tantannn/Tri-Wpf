@@ -8,6 +8,7 @@ public  class GirderStepItem() : BaseViewModel
 {
     private int _step;
     private string _pillarMaterial = "black";
+    private bool _isLastRow;
 
     public int Step
     {
@@ -21,5 +22,5 @@ public  class GirderStepItem() : BaseViewModel
         set => SetField(ref _pillarMaterial, value);
     }
 
-    public bool IsLastRow { get; set; }
+    public bool IsLastRow { get => _isLastRow; set => SetField(ref _isLastRow, value); }
 }
