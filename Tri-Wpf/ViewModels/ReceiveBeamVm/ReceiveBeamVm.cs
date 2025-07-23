@@ -13,6 +13,8 @@ public class ReceiveBeamVm : BaseViewModel
     public ICommand GirderStepCommand { get; }
     public ICommand AddCommand { get; }
     public ICommand DeleteCommand { get; }
+    public ICommand MoveUpCommand { get; }
+    public ICommand MoveDownCommand { get; }
 
     private GirderStepItem _selectedItem;
 
@@ -30,7 +32,8 @@ public class ReceiveBeamVm : BaseViewModel
         AddCommand = new RelayCommand(_ => AddItem());
         DeleteCommand = new RelayCommand(_ => DeleteItem());
         GirderStepCommand = new RelayCommand(ExecuteGirderStep);
-
+        MoveUpCommand = new RelayCommand(_ => MoveUp());
+        MoveDownCommand = new RelayCommand(_ => MoveDown());
         // Add sample data
         for (int i = 1; i <= 4; i++)
         {
@@ -74,7 +77,23 @@ public class ReceiveBeamVm : BaseViewModel
             UpdateStepNumbers();
         }
     }
+    
+    private void MoveUp()
+    {
+        var index = GirderSteps.IndexOf(SelectedItem);
+        if (index <= 0 && index != GirderSteps.Count - 1) return;
+        GirderSteps.Move(index, index - 1);
+        UpdateStepNumbers();
+    }
 
+    private void MoveDown()
+    {
+        var index = GirderSteps.IndexOf(SelectedItem);
+        if (index > GirderSteps.Count - 3) return;
+        GirderSteps.Move(index, index + 1);
+        UpdateStepNumbers();
+    }
+    
     private void UpdateStepNumbers()
     {
         for (int i = 0; i < GirderSteps.Count; i++)

@@ -77,8 +77,8 @@
 
             <!-- Right-aligned buttons -->
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                <Button Content="up" Margin="0,0,10,0" Width="48" />
-                <Button Content="down" Width="48" />
+                <Button Content="up" Margin="0,0,10,0" Width="48" Command="{Binding MoveUpCommand}"/>
+                <Button Content="down" Width="48" Command="{Binding MoveDownCommand}"/>
             </StackPanel>
         </DockPanel>
 
