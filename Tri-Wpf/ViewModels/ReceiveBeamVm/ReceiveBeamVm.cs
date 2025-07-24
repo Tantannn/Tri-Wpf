@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Windows.Input;
 using Tri_Wpf.Commands;
 using Tri_Wpf.Core;
+using Tri_Wpf.Extentions;
 using Tri_Wpf.Models;
 
 namespace Tri_Wpf.ViewModels.ReceiveBeamVm;
@@ -26,7 +27,7 @@ public class ReceiveBeamVm : BaseViewModel
 
     public ReceiveBeamVm()
     {
-        GirderSteps = new ObservableCollection<GirderStepItem>();
+        GirderSteps = [];
 
         // Initialize commands
         AddCommand = new RelayCommand(_ => AddItem());
@@ -47,13 +48,12 @@ public class ReceiveBeamVm : BaseViewModel
         }
     }
 
-    private void ExecuteGirderStep(object parameter)
+    private static void ExecuteGirderStep(object parameter)
     {
-        // Implement your command logic here
-        if (parameter is GirderStepItem item)
-        {
-            Debug.WriteLine($"Executing command for step {item.Step}");
-        }
+        if (parameter is not GirderStepItem item) return;
+        Debug.WriteLine($"Executing command for step {item.Step}");
+        var statusMessage = $"Executed Step {item.Step} (Material: {item.PillarMaterial})";
+        MessageBoxExtension.ShowOk(statusMessage, item.PillarMaterial);
     }
 
     private void AddItem()
@@ -71,11 +71,9 @@ public class ReceiveBeamVm : BaseViewModel
 
     private void DeleteItem()
     {
-        if (SelectedItem != null && SelectedItem.IsLastRow == false)
-        {
-            GirderSteps.Remove(SelectedItem);
-            UpdateStepNumbers();
-        }
+        if (SelectedItem.IsLastRow) return;
+        GirderSteps.Remove(SelectedItem);
+        UpdateStepNumbers();
     }
     
     private void MoveUp()
