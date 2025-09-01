@@ -74,6 +74,7 @@ public sealed class MainWindowVm : BaseViewModel
     ];
 
     public ReceiveBeamVm.ReceiveBeamVm ReceiveBeamVm { get; } = new ReceiveBeamVm.ReceiveBeamVm();
+    public PileVm.PileVm Pile { get; } = new PileVm.PileVm();
     public ICommand EditSpacingCommand { set; get; }
 
     public ICommand SaveToJsonCommand { get; }

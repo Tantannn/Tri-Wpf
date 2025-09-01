@@ -1,4 +1,4 @@
-﻿namespace Tri_Wpf.Views.ReceiveBeamTab;
+﻿namespace Tri_Wpf.Views.Tabs;
 
 public partial class ReceiveBeam
 {

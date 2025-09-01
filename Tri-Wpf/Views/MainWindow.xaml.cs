@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using Tri_Wpf.Models;
 using Tri_Wpf.ViewModels;
-using Tri_Wpf.ViewModels.ReceiveBeamVm;
 
 namespace Tri_Wpf.Views;
 
