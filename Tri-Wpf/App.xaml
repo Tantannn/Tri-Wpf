@@ -8,6 +8,8 @@
                 <ResourceDictionary Source="/Core/Resources/Window.Resources.xaml" />
 
 
+
+
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
