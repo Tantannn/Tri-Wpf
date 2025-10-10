@@ -14,7 +14,6 @@ namespace Tri_Wpf.ViewModels;
 public sealed class MainWindowVm : BaseViewModel
 {
     private string _interval;
-    private bool _hasTopPlate;
     private IList<SpacingItem> _spacingItems;
     private int _numberOfPiles;
     private bool _isComboBoxEnabled;
@@ -27,13 +26,6 @@ public sealed class MainWindowVm : BaseViewModel
         get => _interval;
         private set => SetField(ref _interval, value);
     }
-
-    public bool HasTopPlate
-    {
-        get => _hasTopPlate;
-        set => SetField(ref _hasTopPlate, value);
-    }
-
 
     public int NumberOfPiles
     {
@@ -74,7 +66,7 @@ public sealed class MainWindowVm : BaseViewModel
     ];
 
     public ReceiveBeamVm.ReceiveBeamVm ReceiveBeamVm { get; } = new ReceiveBeamVm.ReceiveBeamVm();
-    public PileVm.PileVm Pile { get; } = new PileVm.PileVm();
+    public PileVm.PileVm PileVm { get; } = new PileVm.PileVm();
     public ICommand EditSpacingCommand { set; get; }
 
     public ICommand SaveToJsonCommand { get; }
@@ -114,7 +106,6 @@ public sealed class MainWindowVm : BaseViewModel
         var saveData = new
         {
             Interval,
-            HasTopPlate,
             NumberOfPiles,
             SF = Sf,
             SL = Sl,
