@@ -12,7 +12,6 @@ namespace Tri_Wpf.Views
             this.Close();
         }
 
-
         public SpacingEdit(int count)
         {
             InitializeComponent();

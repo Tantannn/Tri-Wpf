@@ -35,16 +35,6 @@ public class ReceiveBeamVm : BaseViewModel
         MoveUpCommand = new RelayCommand(_ => MoveUp());
         MoveDownCommand = new RelayCommand(_ => MoveDown());
         // Add sample data
-        for (int i = 1; i <= 4; i++)
-        {
-            var item = new GirderStepItem
-            {
-                Step = i,
-                PillarMaterial = $"Material-{i}",
-                IsLastRow = (i == 4)
-            };
-            GirderSteps.Add(item);
-        }
     }
 
     private void ExecuteGirderStep(object parameter)

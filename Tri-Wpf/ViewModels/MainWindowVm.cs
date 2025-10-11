@@ -14,8 +14,6 @@ namespace Tri_Wpf.ViewModels;
 public sealed class MainWindowVm : BaseViewModel
 {
     private string _interval;
-    private IList<SpacingItem> _spacingItems;
-    private int _numberOfPiles;
     private bool _isComboBoxEnabled;
     private int _sf;
     private int _sl;
@@ -27,11 +25,6 @@ public sealed class MainWindowVm : BaseViewModel
         private set => SetField(ref _interval, value);
     }
 
-    public int NumberOfPiles
-    {
-        get => _numberOfPiles;
-        set => SetField(ref _numberOfPiles, value);
-    }
 
     public int Sf
     {
@@ -67,7 +60,6 @@ public sealed class MainWindowVm : BaseViewModel
 
     public ReceiveBeamVm.ReceiveBeamVm ReceiveBeamVm { get; } = new ReceiveBeamVm.ReceiveBeamVm();
     public PileVm.PileVm PileVm { get; } = new PileVm.PileVm();
-    public ICommand EditSpacingCommand { set; get; }
 
     public ICommand SaveToJsonCommand { get; }
 
@@ -75,28 +67,6 @@ public sealed class MainWindowVm : BaseViewModel
     {
         _profile = ProfileOptions.First(); // set default
         _interval = "間隔 (mm)：2000";
-        _spacingItems = new List<SpacingItem>();
-        
-        EditSpacingCommand = new RelayCommand(_ =>
-        {
-            if (NumberOfPiles > 0)
-            {
-                var spacingEdit = new SpacingEdit(NumberOfPiles);
-                spacingEdit.ShowDialog(); // Show() and ShowDialog()
-                var spacingVm = (SpacingVm)spacingEdit.DataContext;
-                _spacingItems = spacingVm.Spacings;
-
-                var spacingsEqually = _spacingItems.All(s => Math.Abs(s.Value - _spacingItems[0].Value) < 1e-6);
-                var totalDisplayText =
-                    spacingsEqually ? _spacingItems[0].Value.ToString(CultureInfo.InvariantCulture) : "Vary";
-                Interval = $"間隔 (mm)：{totalDisplayText}";
-            }
-            else
-            {
-                MessageBox.Show("正しい数値を入力してください。", "入力エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }, _ => true);
-
         SaveToJsonCommand = new RelayCommand(_ => SaveToJson());
     }
 
@@ -106,11 +76,10 @@ public sealed class MainWindowVm : BaseViewModel
         var saveData = new
         {
             Interval,
-            NumberOfPiles,
             SF = Sf,
             SL = Sl,
             Profile,
-            SpacingItems = _spacingItems
+            // SpacingItems = _spacingItems
         };
 
         var json = JsonSerializer.Serialize(saveData, new JsonSerializerOptions { WriteIndented = true });
