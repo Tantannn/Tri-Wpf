@@ -81,18 +81,8 @@
             <!-- Pile Direction -->
             <TextBlock Text="杭の向き：" Grid.Row="5" Grid.Column="0" Margin="5" VerticalAlignment="Center" />
             <StackPanel Grid.Row="5" Grid.Column="1" Margin="5" HorizontalAlignment="Left">
-                <ComboBox Width="130" Height="22">
-                    <ComboBoxItem IsSelected="True">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock>0°</TextBlock>
-                        </StackPanel>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock>90°</TextBlock>
-                        </StackPanel>
-                    </ComboBoxItem>
-                </ComboBox>
+                <ComboBox Width="130" Height="22" ItemsSource="{Binding Angle}" /> 
+
             </StackPanel>
         </Grid>
     </Grid>
