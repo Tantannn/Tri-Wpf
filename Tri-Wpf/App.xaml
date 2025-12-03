@@ -4,6 +4,7 @@
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Core/Resources/Window.Resources.xaml" />
             </ResourceDictionary.MergedDictionaries>
